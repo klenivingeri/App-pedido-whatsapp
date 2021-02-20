@@ -1,0 +1,58 @@
+<div class="container-fluid m-0 p-0">
+  
+  <nav (click)="mostraCarrinho()" class="navbar fixed-top navbar-light bg-danger shadow-sm mb-0 mt-0 pb-0 pt-0 shadow">
+      
+      <span  class="navbar-brand  h1 text-light text-center mb-0 mt-0 pb-0 pt-0  ">
+         <img src="../../assets/itf/logo.png" width="88" class="m-0 p-0">
+         </span>
+         <p class="m-0 p-0 text-white h5" [@animacao-banner]="estado"> Finalizar compra</p>
+         <div>
+         <img [@animacao-carrinho]="estado" src="../../assets/itf/carrinhob.png">
+         <div style="position: absolute; top:8px; margin-left: 16px;" class="text-white" ><span class="h5" ><strong [@animacao-banner]="estado"> {{carrinhototal}}</strong></span></div>
+        </div>
+
+
+<div style="position: absolute; width: 100%;" class="m-0 p-0">
+  <img style="margin-left: -16px; margin-top: 73px;" src="../../assets/itf/rebarbaEsq.png">
+  <img  style="margin-right: 15px ;margin-top: 73px; float: right;" src="../../assets/itf/rebarbaDir.png">
+</div>
+  </nav>
+
+
+  
+  <div *ngIf="mostrarCarrinho; else PaginaCarrinho">
+    
+      <app-cardapio (mostraOferta)="mostrarOferta($event)" (mostraCarrinho)="mostraCarrinho()" (verificacarrinho)="verificacarrinho()" ></app-cardapio>
+
+    <div *ngIf="trocaPagina">
+      <app-oferta [mostraoferta]="mostraoferta" (mostrarCarrinho)="mostraCarrinho()" (verificacarrinho)="verificacarrinho()"></app-oferta>
+    </div>
+  </div>
+  <ng-template #PaginaCarrinho>
+    <app-carrinho (voltaCarrinho)="voltaCarrinho($event)" (verificacarrinho)="verificacarrinho()"></app-carrinho>
+  </ng-template>
+
+</div>
+
+
+
+<div *ngIf="mostraLogo == 1 "><div id="logo" class="bg-danger"> 
+  <div class="mx-auto p-4 " ><img  class="flot-center" src="../../../assets/itf/logo.png">
+  </div>
+  <div class="spinner-border text-light" role="status" (click)="logar()">
+    <span class="sr-only" >Loading...</span>
+  </div>
+</div>
+</div>
+  
+
+
+<!--
+
+
+
+
+
+
+
+-->

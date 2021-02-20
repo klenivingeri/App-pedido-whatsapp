@@ -1,0 +1,410 @@
+<div class="tab-content cor" id="pills-tabContent"  >
+  
+  <!-- Inicio do emcapsulamento -->
+    <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+   
+    <div style="margin-top: 65px;margin-bottom: 60px;" [@animacao-banner]="estado">
+      <!-- Repetição-->
+      <div *ngFor="let lista of publicacoes"  class="m-3">
+        <div *ngIf="lista.modelo == 'Assado'" >
+          <div   class="shadow mt-3"  >
+            <div class="m-0">
+              <div class="row p-0 m-0 fundoCard rounded border border-white ">
+                <div (click)="mostrarOferta(lista)"  data-toggle="modal" data-target="#staticBackdrop" class="col-3 p-0 rounded  " 
+                  [style.background-image]="'url(' + lista.url_imagem  + ')'"
+                  style="background-repeat: no-repeat;
+                  background-size: cover;
+                  background-color: #FFF;
+                  background-position: center;
+                  height: 100px; 
+                  width: 75px;">
+                </div>
+
+                <div class="col-9 pl-0">
+                    <div class="caixa" style="position: relative;">
+                      <div class="row ml-2">
+                        <h4 class="card-title mb-1 mt-1 text-dark"(click)="mostrarOferta(lista)" data-toggle="modal" data-target="#staticBackdrop" >{{(lista.titulo).substr(0, 25)}}</h4>
+                      </div>
+                      <div (click)="adicionarItemCarrinho(lista)" style="position: absolute; right:0; margin-right: -10px;">
+                        <img src="../../../assets/itf/carrinhop50.png" height="20px" class="float-right m-2" >
+                      </div>
+                      <div *ngFor="let carrinhokey of itemCarrinho" style="position: absolute; right:0; margin-right: -10px;" >
+                        <div *ngIf="lista.key == carrinhokey.key" (click)="remover(lista)" style="z-index: 5;" >
+                          <img [@animacao-banner]="estado" src="../../../assets/itf/carrinhop.png" height="20px" class="float-right m-2" >
+                        </div>
+                      </div>
+                      
+                      
+                      <div class="row ml-1 no-gutter align-items-center" (click)="mostrarOferta(lista)" data-toggle="modal" data-target="#staticBackdrop">
+                        <div class="col-12 pl-2  ">
+                          <p class="card-text pb-0 m-0" >{{(lista.descricao).substr(0, 70) }}</p> <div *ngIf="lista.descricao.length > 69">...</div>
+                        </div>
+                      </div>
+                      <div *ngIf="lista.oferta != 0; else nOferta"> <!-- if oferta-->
+                        <div class="row no-gutters m-0 p-0" (click)="mostrarOferta(lista)" data-toggle="modal" data-target="#staticBackdrop">
+                          <div class="col-5  m-0 pl-2 ">
+                            <strong class="m-0 p-0">R$: <span style="font-size: 20px; margin: 0px; padding: 0px;">{{lista.oferta.replace(".",",")}}</span></strong>
+                            
+                          </div>
+                          <div class="col-3 m-0 p-0 pt-2 ">
+                            <strong class="m-0 p-0">R$: <span style="font-size: 13px; margin: 0px; padding: 0px;"><s>{{lista.valor.replace(".",",")}}</s></span></strong>
+                          </div>
+                          <div class="col-4 m-0 p-0 pt-2"> 
+                            <p class="m-0 p-0 text-right">  <span style="font-size: 11px; margin:0px; padding: 0px;" class="text-muted">{{lista.modelo}}</span></p>
+                          </div>
+                        </div>
+                      </div>
+                      <ng-template #nOferta>
+                        <div class="row no-gutters m-0 p-0" (click)="mostrarOferta(lista)" data-toggle="modal" data-target="#staticBackdrop">
+                          <div class="col-5  m-0 pl-2 ">
+                            <strong class="m-0 p-0">R$: <span style="font-size: 20px; margin: 0px; padding: 0px;">{{lista.valor.replace(".",",")}}</span></strong>
+                            
+                          </div>
+                          <div class="col-3 m-0 p-0 ">
+                             
+                          </div>
+                          <div class="col-4 m-0 p-0 pt-2 "> 
+                          <p class="m-0 p-0 text-right">  <span style="font-size: 11px; margin:0px; padding: 0px;" class="text-muted">{{lista.modelo}}</span></p>
+                          </div>
+                        </div>
+
+                      </ng-template><!--if oferta fim-->
+                     
+                    </div><!---->
+                </div><!---->
+              </div><!---->
+            </div><!---->
+          </div><!---->
+        </div><!-- if modelo fim-->
+      </div><!---->
+    </div><!---->
+    </div> <!-- fim do emcapsulamento -->
+
+    <!-- Inicio do emcapsulamento -->
+    <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+
+      <div style="margin-top: 65px;margin-bottom: 80px;">
+        <!-- Repetição-->
+        <div *ngFor="let lista of publicacoes" class="m-3">
+          <div *ngIf="lista.modelo == 'Frito'" >
+            <div   class="shadow mt-3"  >
+              <div class="m-0">
+                <div class="row p-0 m-0 fundoCard rounded border border-white ">
+                  <div (click)="mostrarOferta(lista)"  data-toggle="modal" data-target="#staticBackdrop" class="col-3 p-0 rounded  " 
+                    [style.background-image]="'url(' + lista.url_imagem  + ')'"
+                    style="background-repeat: no-repeat;
+                    background-size: cover;
+                    background-color: #FFF;
+                    background-position: center;
+                    height: 100px; 
+                    width: 75px;">
+                  </div>
+  
+                  <div class="col-9 pl-0">
+                      <div class="caixa" style="position: relative;">
+                        <div class="row ml-2 ">
+                          <h4 class="card-title mb-1 mt-1 text-dark"(click)="mostrarOferta(lista)" data-toggle="modal" data-target="#staticBackdrop" >{{(lista.titulo).substr(0, 25)}}</h4>
+                        </div>
+                        <div (click)="adicionarItemCarrinho(lista)" style="position: absolute; right:0; margin-right: -10px;">
+                          <img src="../../../assets/itf/carrinhop50.png" height="20px" class="float-right m-2" >
+                        </div>
+                        <div *ngFor="let carrinhokey of itemCarrinho" style="position: absolute; right:0; margin-right: -10px;" >
+                          <div *ngIf="lista.key == carrinhokey.key" (click)="remover(lista)" style="z-index: 5;" >
+                            <img [@animacao-banner]="estado" src="../../../assets/itf/carrinhop.png" height="20px" class="float-right m-2" >
+                          </div>
+                        </div>
+                        
+                        
+                        <div class="row ml-1 no-gutter align-items-center" (click)="mostrarOferta(lista)" data-toggle="modal" data-target="#staticBackdrop">
+                          <div class="col-12 pl-2   ">
+                            <p class="card-text pb-0 m-0" >{{(lista.descricao).substr(0, 70) }}</p> <div *ngIf="lista.descricao.length > 69">...</div>
+                          </div>
+                        </div>
+                        <div *ngIf="lista.oferta != 0; else nOferta"> <!-- if oferta-->
+                          <div class="row no-gutters m-0 p-0" (click)="mostrarOferta(lista)" data-toggle="modal" data-target="#staticBackdrop">
+                            <div class="col-5  m-0 pl-2 ">
+                              <strong class="m-0 p-0">R$: <span style="font-size: 20px; margin: 0px; padding: 0px;">{{lista.oferta.replace(".",",")}}</span></strong>
+                              
+                            </div>
+                            <div class="col-3 m-0 p-0 pt-2">
+                              <strong class="m-0 p-0">R$: <span style="font-size: 13px; margin: 0px; padding: 0px;"><s>{{lista.valor.replace(".",",")}}</s></span></strong>
+                            </div>
+                            <div class="col-4 m-0 p-0 pt-2 "> 
+                              <p class="m-0 p-0 text-right">  <span style="font-size: 11px; margin:0px; padding: 0px;" class="text-muted">{{lista.modelo}}</span></p>
+                            </div>
+                          </div>
+                        </div>
+                        <ng-template #nOferta>
+                          <div class="row no-gutters m-0 p-0" (click)="mostrarOferta(lista)" data-toggle="modal" data-target="#staticBackdrop">
+                            <div class="col-5  m-0 pl-2 ">
+                              <strong class="m-0 p-0">R$: <span style="font-size: 20px; margin: 0px; padding: 0px;">{{lista.valor.replace(".",",")}}</span></strong>
+                              
+                            </div>
+                            <div class="col-3 m-0 p-0 ">
+                               
+                            </div>
+                            <div class="col-4 m-0 p-0 pt-2 "> 
+                            <p class="m-0 p-0 text-right">  <span style="font-size: 11px; margin:0px; padding: 0px;" class="text-muted">{{lista.modelo}}</span></p>
+                            </div>
+                          </div>
+  
+                        </ng-template><!--if oferta fim-->
+                       
+                      </div><!---->
+                  </div><!---->
+                </div><!---->
+              </div><!---->
+            </div><!---->
+          </div><!-- if modelo fim-->
+      </div>
+    </div>
+    </div><!-- fim do emcapsulamento -->
+
+    <!-- Inicio do emcapsulamento -->
+    <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+
+   <div style="margin-top: 65px;margin-bottom: 80px;">
+  <!-- Repetição-->
+        <div *ngFor="let lista of publicacoes" class="m-3" >
+          <div *ngIf="lista.modelo == 'Refrigerante' || lista.modelo == 'Sucos' || lista.modelo == 'Vitaminas' ">
+            <div   class="shadow mt-3"  >
+              <div class="m-0">
+                <div class="row p-0 m-0 fundoCard rounded border border-white ">
+                  <div (click)="mostrarOferta(lista)"  data-toggle="modal" data-target="#staticBackdrop" class="col-3 p-0 rounded  " 
+                    [style.background-image]="'url(' + lista.url_imagem  + ')'"
+                    style="background-repeat: no-repeat;
+                    background-size: cover;
+                    background-color: #FFF;
+                    background-position: center;
+                    height: 100px; 
+                    width: 75px;">
+                  </div>
+  
+                  <div class="col-9 pl-0">
+                      <div class="caixa" style="position: relative;">
+                        <div class="row ml-2 ">
+                          <h4 class="card-title mb-1 mt-1 text-dark"(click)="mostrarOferta(lista)" data-toggle="modal" data-target="#staticBackdrop" >{{(lista.titulo).substr(0, 25)}}</h4>
+                        </div>
+                        <div (click)="adicionarItemCarrinho(lista)" style="position: absolute; right:0; margin-right: -10px;">
+                          <img src="../../../assets/itf/carrinhop50.png" height="20px" class="float-right m-2" >
+                        </div>
+                        <div *ngFor="let carrinhokey of itemCarrinho" style="position: absolute; right:0; margin-right: -10px;" >
+                          <div *ngIf="lista.key == carrinhokey.key" (click)="remover(lista)" style="z-index: 5;" >
+                            <img [@animacao-banner]="estado" src="../../../assets/itf/carrinhop.png" height="20px" class="float-right m-2" >
+                          </div>
+                        </div>
+                        
+                        
+                        <div class="row ml-1 no-gutter align-items-center" (click)="mostrarOferta(lista)" data-toggle="modal" data-target="#staticBackdrop">
+                          <div class="col-12 pl-2  ">
+                            <p class="card-text pb-0 m-0" >{{(lista.descricao).substr(0, 70) }}</p> <div *ngIf="lista.descricao.length > 69">...</div>
+                          </div>
+                        </div>
+                        <div *ngIf="lista.oferta != 0; else nOferta"> <!-- if oferta-->
+                          <div class="row no-gutters m-0 p-0" (click)="mostrarOferta(lista)" data-toggle="modal" data-target="#staticBackdrop">
+                            <div class="col-5  m-0 pl-2 ">
+                              <strong class="m-0 p-0">R$: <span style="font-size: 20px; margin: 0px; padding: 0px;">{{lista.oferta.replace(".",",")}}</span></strong>
+                              
+                            </div>
+                            <div class="col-3 m-0 p-0 pt-2 ">
+                              <strong class="m-0 p-0">R$: <span style="font-size: 13px; margin: 0px; padding: 0px;"><s>{{lista.valor.replace(".",",")}}</s></span></strong>
+                            </div>
+                            <div class="col-4 m-0 p-0 pt-2 "> 
+                              <p class="m-0 p-0 text-right">  <span style="font-size: 11px; margin:0px; padding: 0px;" class="text-muted">{{lista.modelo}}</span></p>
+                            </div>
+                          </div>
+                        </div>
+                        <ng-template #nOferta>
+                          <div class="row no-gutters m-0 p-0" (click)="mostrarOferta(lista)" data-toggle="modal" data-target="#staticBackdrop">
+                            <div class="col-5  m-0 pl-2 ">
+                              <strong class="m-0 p-0">R$: <span style="font-size: 20px; margin: 0px; padding: 0px;">{{lista.valor.replace(".",",")}}</span></strong>
+                              
+                            </div>
+                            <div class="col-3 m-0 p-0 ">
+                               
+                            </div>
+                            <div class="col-4 m-0 p-0 pt-2 "> 
+                            <p class="m-0 p-0 text-right">  <span style="font-size: 11px; margin:0px; padding: 0px;" class="text-muted">{{lista.modelo}}</span></p>
+                            </div>
+                          </div>
+  
+                        </ng-template><!--if oferta fim-->
+                       
+                      </div><!---->
+                  </div><!---->
+                </div><!---->
+              </div><!---->
+            </div><!---->
+          </div><!--if modelo fim-->
+      </div>
+    </div>
+    </div><!-- fim do emcapsulamento -->
+
+     <!-- Inicio do emcapsulamento -->
+     <div class="tab-pane fade" id="pills-promocao" role="tabpanel" aria-labelledby="pills-contact-tab">
+
+      <div style="margin-top: 65px;margin-bottom: 80px;">
+     <!-- Repetição-->
+           <div *ngFor="let lista of publicacoes" class="m-3" >
+            <div *ngIf="lista.oferta != '0'" >
+              <div   class="shadow mt-3"  >
+                <div class="m-0">
+                  <div class="row p-0 m-0 fundoCard rounded border border-white ">
+                    <div (click)="mostrarOferta(lista)"  data-toggle="modal" data-target="#staticBackdrop" class="col-3 p-0 rounded  " 
+                      [style.background-image]="'url(' + lista.url_imagem  + ')'"
+                      style="background-repeat: no-repeat;
+                      background-size: cover;
+                      background-color: #FFF;
+                      background-position: center;
+                      height: 100px; 
+                      width: 75px;">
+                    </div>
+    
+                    <div class="col-9 pl-0">
+                        <div class="caixa" style="position: relative;">
+                          <div class="row ml-2 ">
+                            <h4 class="card-title mb-1 mt-1 text-dark"(click)="mostrarOferta(lista)" data-toggle="modal" data-target="#staticBackdrop" >{{(lista.titulo).substr(0, 25)}}</h4>
+                          </div>
+                          <div (click)="adicionarItemCarrinho(lista)" style="position: absolute; right:0; margin-right: -10px;">
+                            <img src="../../../assets/itf/carrinhop50.png" height="20px" class="float-right m-2" >
+                          </div>
+                          <div *ngFor="let carrinhokey of itemCarrinho" style="position: absolute; right:0; margin-right: -10px;" >
+                            <div *ngIf="lista.key == carrinhokey.key" (click)="remover(lista)" style="z-index: 5;" >
+                              <img [@animacao-banner]="estado" src="../../../assets/itf/carrinhop.png" height="20px" class="float-right m-2" >
+                            </div>
+                          </div>
+                          
+                          
+                          <div class="row ml-1 no-gutters align-items-center" (click)="mostrarOferta(lista)" data-toggle="modal" data-target="#staticBackdrop">
+                            <div class="col-12 pl-2  ">
+                              <p class="card-text pb-0 m-0" >{{(lista.descricao).substr(0, 70) }}</p> <div *ngIf="lista.descricao.length > 69">...</div>
+                            </div>
+                          </div>
+                          <div *ngIf="lista.oferta != 0; else nOferta"> <!-- if oferta-->
+                            <div class="row no-gutters m-0 p-0" (click)="mostrarOferta(lista)" data-toggle="modal" data-target="#staticBackdrop">
+                              <div class="col-5  m-0 pl-2">
+                                <strong class="m-0 p-0">R$: <span style="font-size: 20px; margin: 0px; padding: 0px;">{{lista.oferta.replace(".",",")}}</span></strong>
+                                
+                              </div>
+                              <div class="col-3 m-0 p-0 pt-2">
+                                <strong class="m-0 p-0">R$: <span style="font-size: 13px; margin: 0px; padding: 0px;"><s>{{lista.valor.replace(".",",")}}</s></span></strong>
+                              </div>
+                              <div class="col-4 m-0 p-0 pt-2 "> 
+                                <p class="m-0 p-0 text-right">  <span style="font-size: 11px; margin:0px; padding: 0px;" class="text-muted">{{lista.modelo}}</span></p>
+                              </div>
+                            </div>
+                          </div>
+                          <ng-template #nOferta>
+                            <div class="row no-gutters m-0 p-0" (click)="mostrarOferta(lista)" data-toggle="modal" data-target="#staticBackdrop">
+                              <div class="col-5  m-0 pl-2 ">
+                                <strong class="m-0 p-0">R$: <span style="font-size: 20px; margin: 0px; padding: 0px;">{{lista.valor.replace(".",",")}}</span></strong>
+                                
+                              </div>
+                              <div class="col-3 m-0 p-0 ">
+                                 
+                              </div>
+                              <div class="col-4 m-0 p-0 pt-2 "> 
+                              <p class="m-0 p-0 text-right">  <span style="font-size: 11px; margin:0px; padding: 0px;" class="text-muted">{{lista.modelo}}</span></p>
+                              </div>
+                            </div>
+    
+                          </ng-template><!--if oferta fim-->
+                         
+                        </div><!---->
+                    </div><!---->
+                  </div><!---->
+                </div><!---->
+              </div><!---->
+            </div> <!-- if demo fim-->
+         </div>
+       </div>
+     </div><!-- fim do emcapsulamento -->
+    
+
+    <nav class="navbar fixed-bottom navbar-light bg-danger m-0 p-0 justify-content-center ">
+      <div style="position: absolute; height: 0px; width: 100%;" class="m-0 p-0 bg-warning">
+        <img style="margin-left: px; margin-top:-39px; float: left; " src="../../assets/itf/rebarbaBotEsq.png">
+        <img  style="margin-right:0px ;margin-top: -39px; float: right;" src="../../../assets/itf/rebarbaBotDir.png">
+      </div>
+
+     <ul class="nav nav-pills pt-0 pb-0" id="pills-tab" role="tablist">
+      <li class="nav-item pt-0 pb-0" role="presentation " style="width: 20%;">
+        <button type="button" 
+                class="btn btn-danger text-white m-0 pt-0 pb-0" 
+                id="pills-home-tab" 
+                data-toggle="pill" 
+                href="#pills-home" 
+                
+                role="tab" 
+                aria-controls="pills-home" 
+                aria-selected="true">
+                <div class="m-0 p-0" >
+                  <img class=" m-0 p-0" src="../../../assets/itf/produto.svg" height="18" width="18">
+                  <p class="m-0 p-0" style="font-size: 9px;">Assados</p>
+                </div>        
+        </button>
+      </li>
+      <li class="nav-item pt-0 pb-0" role="presentation" style="width: 20%;">
+        <button type="button"
+                class="btn btn-danger  text-white m-0 pt-0 pb-0"
+                id="pills-profile-tab"
+                data-toggle="pill"
+                href="#pills-profile"
+                role="tab"
+                aria-controls="pills-profile"
+                aria-selected="false">
+                <div class="m-0 p-0">
+                  <img class=" m-0 p-0" src="../../../assets/itf/produto.svg" height="18" width="18">
+                  <p class="m-0 p-0" style="font-size: 9px;">Fritos</p>
+                </div>
+        </button>
+      </li>
+      <li class="nav-item pt-0 pb-0" role="presentation" style="width: 20%;">
+        <button type="button" 
+                class="btn btn-danger  text-white m-0 pt-0 pb-0" 
+                id="pills-contact-tab" 
+                data-toggle="pill" 
+                href="#pills-contact" 
+                role="tab" 
+                aria-controls="pills-contact" 
+                aria-selected="false">
+                <div class="m-0 p-0">
+                  <img class=" m-0 p-0" src="../../../assets/itf/produto.svg" height="18" width="18">
+                  <p class="m-0 p-0" style="font-size: 9px;">Bebidas</p>
+                </div>
+        </button>
+      </li>
+      <li class="nav-item pt-0 pb-0" role="presentation" style="width: 20%;">
+        <button type="button" 
+                class="btn btn-danger  text-white m-0 pt-0 pb-0" 
+                id="pills-contact-tab" 
+                data-toggle="pill" 
+                href="#pills-promocao" 
+                
+                role="tab" 
+                aria-controls="pills-contact" 
+                aria-selected="false">
+                <div class="m-0 p-0">
+                  <img class=" m-0 p-0" src="../../../assets/itf/promocao.svg" height="18" width="18">
+                  <p class="m-0 p-0" style="font-size: 9px;">Promoções</p>
+                </div>
+        </button>
+      </li>
+      <li class="nav-item pt-0 pb-0" role="presentation" style="width: 20%;">
+        <button type="button" 
+                class="btn btn-danger  text-white m-0 pt-0 pb-0" 
+                id="pills-contact-tab" 
+                data-toggle="pill" 
+                (click)="festa()"
+                role="tab" 
+                aria-controls="pills-contact" 
+                aria-selected="false">
+                <div class="m-0 p-0">
+                  <img class=" m-0 p-0" src="../../../assets/itf/conta.svg" height="18" width="18">
+                  <p class="m-0 p-0" style="font-size: 9px;">Salg.<span class="text-danger">_</span>festa</p>
+                </div>
+        </button>
+      </li>
+
+    </ul>
+  </nav>

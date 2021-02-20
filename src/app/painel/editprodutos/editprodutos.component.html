@@ -1,0 +1,78 @@
+<div style="margin-top: 50px;" >
+  <div class="container-fluid m-0 p-0" 
+      [style.background-image]="'url(' + editaProduto.url_imagem  + ')'"
+      style="height:250px;
+      background-repeat: no-repeat;
+      background-color: #FFF;
+      background-size: cover;
+      background-position: center;">
+  </div>
+  <p class="text-center m-2 p-0 h5">Editar  Produto</p>
+<form [formGroup]="formulario" (ngSubmit)="uploadProdutos()"> 
+    <div class="form-group m-1 p-0">
+      <input 
+        [value]="editaProduto.titulo"
+        type="text" 
+        class="form-control  {{formulario.value.nome == null  && formulario.get('nome').touched  == false ? '' : (formulario.get('nome').valid ? 'is-valid' : 'is-invalid')}}" 
+        placeholder="Nome"
+        formControlName="nome">
+    </div>
+    <div class="form-group m-1 p-0">
+      <select formControlName="modelo" class="custom-select my-1 mr-sm-2 col-12 {{formulario.value.modelo == null  && formulario.get('modelo').touched  == false ? '' : (formulario.get('modelo').valid ? 'is-valid' : 'is-invalid')}} ">
+        <option [ngValue]="null">Modelo</option>
+        <option value="Assado" >Assados</option>
+        <option value="Frito" >Fritos</option>
+        <option value="Sucos" >Sucos</option>
+        <option value="Vitaminas" >Vitaminas</option>
+        <option value="Refrigerante" >Refrigerante</option>
+        <option value="Promocoes" >Promoção</option>
+      </select>
+    </div>
+    <div class="form-group m-1 p-0">
+      <div class="row no-gutter ">
+        <div class="col-6">
+          <input 
+          value="{{editaProduto.valor}}"
+          type="text"
+          class="form-control {{formulario.value.valor == null  && formulario.get('valor').touched  == false ? '' : (formulario.get('valor').valid ? 'is-valid' : 'is-invalid')}} " 
+          placeholder="0,00"
+          formControlName="valor">
+        </div>
+        <div class="col-6">
+          <input 
+          value="{{editaProduto.oferta}}"
+          type="text"
+          class="form-control {{formulario.value.oferta == null  && formulario.get('oferta').touched  == false ? '' : (formulario.get('oferta').touched ? 'is-valid' : 'is-invalid')}} " 
+          placeholder="Oferta: 0,00"
+          formControlName="oferta">
+        </div>
+      </div>
+    </div>
+    <div class="form-group m-1 mb-2  p-0">
+    <textarea value="{{editaProduto.descricao}}"
+     name="comment" 
+     class="form-control {{formulario.value.descricao == null  && formulario.get('descricao').touched  == false ? '' : (formulario.get('descricao').valid ? 'is-valid' : 'is-invalid')}}"
+      formControlName="descricao"
+       form="usrform" 
+       placeholder="Descrição"></textarea>
+  </div>
+    <div *ngIf="!uploadok; else confirma">
+    <button type="submit" class="btn btn-primary btn-sm btn-block">Atualizar</button>
+  </div>
+  <ng-template #confirma>
+    <button  class="btn btn-success btn-sm btn-block">Atualização feita com Sucesso</button>
+  </ng-template>
+  </form> 
+
+    
+</div>
+
+<nav class="navbar fixed-bottom navbar-light bg-danger m-0 p-0  justify-content-center">
+   
+  <ul class="nav nav-pills " id="pills-tab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button type="button" class="btn btn-danger badge  m-2" (click)="mostrarLista()" >Voltar</button>
+
+  </ul>
+
+</nav>

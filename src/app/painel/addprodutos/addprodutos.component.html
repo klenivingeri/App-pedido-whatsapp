@@ -1,0 +1,109 @@
+<!-- Modal  Cadastro -->
+<div  class="modal fade"
+id="exampleModal" 
+tabindex="-1" 
+aria-labelledby="exampleModalLabel" 
+aria-hidden="true">
+<div class="modal-dialog" >
+  <div  *ngIf="progressoPublicacao === 'pendente'" class="modal-content border border-white" style="
+    background-size: contain;
+    background-color: #FFF;
+    border: 2px solid darkgray;
+    color: #000; text-shadow: 1px 1px 0 #fff;">
+    <div style="
+      background-color: rgb(247, 247, 247);
+      border-radius: 30px 30px 0px 0px;" >
+      <div class="modal-header">
+        <h5 class="card-title mb-1 mt-1 ">Cadastro de Produtos</h5>
+      </div>
+        <div class="card-body ">
+              <form [formGroup]="formulario" (ngSubmit)="cadastrarProduto()"> 
+                <div class="form-group">
+                  <input 
+                    value="{{valor}}"
+                    type="text" 
+                    class="form-control  {{formulario.value.nome == null  && formulario.get('nome').touched  == false ? '' : (formulario.get('nome').valid ? 'is-valid' : 'is-invalid')}}" 
+                    placeholder="Nome"
+                    formControlName="nome">
+                </div>
+                <div class="form-group">
+                  <select formControlName="modelo" class="custom-select my-1 mr-sm-2 col-12 {{formulario.value.modelo == null  && formulario.get('modelo').touched  == false ? '' : (formulario.get('modelo').valid ? 'is-valid' : 'is-invalid')}} ">
+                    <option [ngValue]="null">Modelo</option>
+                    <option value="Assado" >Assados</option>
+                    <option value="Frito" >Fritos</option>
+                    <option value="Sucos" >Sucos</option>
+                    <option value="Vitaminas" >Vitaminas</option>
+                    <option value="Refrigerante" >Refrigerante</option>
+                    <option value="Promocoes" >Promoção</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <div class="row no-gutter ">
+                    <div class="col-6">
+
+                      <input 
+                      value="{{valor}}"
+                        type="text"
+                        class="form-control {{formulario.value.valor == null  && formulario.get('valor').touched  == false ? '' : (formulario.get('valor').valid ? 'is-valid' : 'is-invalid')}} " 
+                        placeholder="Preço: 0,00"
+                        formControlName="valor">
+
+                    </div>
+                    <div class="col-6">
+                      <input 
+                      value="{{valor}}"
+                        type="text"
+                        class="form-control {{formulario.value.oferta == null  && formulario.get('oferta').touched  == false ? '' : (formulario.get('oferta').touched ? 'is-valid' : 'is-invalid')}} " 
+                        placeholder="Oferta: 0,00"
+                        formControlName="oferta">
+                    </div>
+                  </div>
+                  
+                 
+                </div>
+                <div class="form-group">
+                <textarea value="{{valor}}"
+                 name="comment" 
+                 class="form-control {{formulario.value.descricao == null  && formulario.get('descricao').touched  == false ? '' : (formulario.get('descricao').valid ? 'is-valid' : 'is-invalid')}}"
+                  formControlName="descricao"
+                   form="usrform" 
+                   placeholder="Descrição"></textarea>
+              </div>
+                <div class="form-group">
+                  <input class="form-control-file"
+                  value="{{valor}}"
+                  type="file"
+                  class="form-control"
+                  accept="image/*"
+                  (change)="preparaImagemUpload($event)">
+                </div>
+                <button type="submit" class="btn btn-primary btn-sm btn-block">Cadastrar</button>
+              </form> 
+            </div>
+        </div>
+      </div>
+
+        <div  *ngIf="progressoPublicacao === 'andamento'" class="modal-content border border-white" style="background-size: contain;background-color: #FFF; border: 2px solid darkgray; color: #000; text-shadow: 1px 1px 0 #fff;">
+          <div style=" background-image: url(../../../assets/itf/popupfundo1.png); border-radius: 30px 30px 0px 0px;" >
+            <div class="modal-header">
+              <h5 class="card-title mb-1 mt-1 ">Cadastro em andamento</h5>
+            </div>
+              <div class="card-body ">
+                Progresso: {{ porcentagemUpload }}%
+              </div>
+          </div>
+        </div>
+    
+
+    
+        <div  *ngIf="progressoPublicacao === 'concluido'" class="modal-content border border-white" style="background-size: contain;background-color: #FFF; border: 2px solid darkgray; color: #000; text-shadow: 1px 1px 0 #fff;">
+          <div style=" background-image: url(../../../assets/itf/popupfundo1.png); border-radius: 30px 30px 0px 0px;" >
+            <div class="modal-header">
+              <h5 class="card-title mb-1 mt-1 ">Cadastro realizada com sucesso.</h5>
+            </div>
+              <div class="card-body ">
+                Sua Cadastro foi realizada com sucesso
+              </div>
+          </div>
+        </div>
+    </div>

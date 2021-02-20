@@ -1,0 +1,118 @@
+<!-- Modal -->
+
+<div class="modal fade m-0" style="height: 100%;" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog p-0 m-1" >
+    <div class="modal-content m-0 p-0 ">
+      <div style="position: relative; ">
+        <div style="position: absolute;
+                    border-radius: 100%;
+                    background-color: rgba(255, 255, 255, 0.555);
+                    right:0; 
+                    margin-right: 20px; margin-top: 20px; z-index: 10;
+                    padding: 1px 7px 5px 7px;">
+      <a href="" (click)="sair()"  data-dismiss="modal" aria-label="Close" class="text-dark">
+        <img src="../../../assets/itf/close.svg" height="15px"></a>
+      </div>
+
+
+
+
+
+
+        <div  [@animacao-banner]="estado"
+        style="margin-top: 50px;" class="m-0 p-0">
+    <div class="container-fluid m-0 p-0" 
+        [style.background-image]="'url(' + mostraoferta.url_imagem  + ')'"
+        style="height:375px;
+        background-repeat: no-repeat;
+        background-color: #FFF;
+        background-size: cover;
+        background-position: center;">
+    </div>
+  
+    <div style=" margin-top: -30px;
+        background-image: url(../../../assets/itf/popupfundo.png);
+        background-repeat: repeat-x;
+        
+        border-radius: 30px 30px 30px 30px;"
+        class="border border-light shadow shadow-sm mb-5 ">
+      <div class="container pt-3 ">
+        <div class="row m-0 p-0 ">
+          <div class=" col-12 d-block h4 text-dark" > {{ mostraoferta.titulo}}</div>
+          <div class="w-100"><hr class="mt-1 m-0  " /></div>
+          <div class=" col-12 d-block " >
+            <span class="h6">Descrição:</span>
+              <span>
+                {{mostraoferta.descricao}}
+              </span>
+              <span style="font-size: 11px;color: rgb(100, 100, 100)">
+                  {{mostraoferta.modelo}}.
+              </span>
+              <div class="row m-0 mt-3 ">
+                <div class="col-7  m-0 p-0" ><p class=" m-0 pl-3 p-0 text-dark" ><span class="h1"><span class="h5">R$:</span> {{(mostraoferta.quantidade * valoroferta).toFixed(2).replace(".",",")}}</span></p><hr class="mt-1 m-0  " /></div>
+                <div class="col-2 text-center mt-1 p-0 pt-2 "><i (click)="remover()"  class="fa fa-minus shadow-sm" style="background-color:rgba(235, 235, 235, 0.5);padding: 5px 7px 5px 7px; border-radius: 5px; border: rgb(201, 201, 201) 1px solid;"></i></div>
+                <div class="col-1 text-center h5 mt-1 p-0 pt-2 "><span class="h5">{{mostraoferta.quantidade}}</span></div>
+                <div class="col-2 text-center mt-1 p-0 pt-2"><i (click)="adicionar()"  class="fa fa-plus shadow-sm  " style="background-color:rgba(235, 235, 235, 0.5);padding: 5px 7px 5px 7px;border-radius: 5px; border: rgb(201, 201, 201) 1px solid;"></i></div>
+              </div><br />
+            </div>
+
+      </div>
+    </div>
+  
+  </div>
+  
+  
+  
+  
+  
+  
+
+
+      </div> 
+      <div class=" m-1"><!--botões-->
+        <div class="container m-0 p-0">
+
+
+
+
+
+
+          <div class="row no-gutters m-0 p-0 ">
+            <div class="col-2 no-gutters ">
+              <p class="text-right">
+              <button type="button" class="btn btn-secondary btn-sm  btn-block" data-dismiss="modal" (click)="sair()">
+                <i class="fa fa-arrow-left" style="font-size: 18px;"></i>
+              </button>
+            </p>
+            </div>
+            <div class="col-8 pl-1 pr-1">
+              <div  *ngIf="addok; else aceito" >
+ 
+
+                <button style="padding-left: 43px;   padding-right: 11px;"  type="button"  class=" btn btn-success btn-sm btn-block "  >
+                  Pedido adicionado 
+                  <img class="ml-1" [@animacao-carrinho]="estado" src="../../../assets/itf/carrinhob.png" style="margin-top: -3px; margin-right:5px ; width:20px ;" >
+                </button>
+              </div>    
+              <ng-template #aceito>
+                <button style="padding-right: 34px;" type="button"  (click)="adicionarItemCarrinho(mostraoferta)" class="text-light btn btn-block btn-warning btn-sm"  >
+                  <img src="../../../assets/itf/carrinhob.png" style="margin-top: -3px; margin-right:5px ; width:20px ;" >
+                  Adicionar<span class="text-warning">_</span>ao<span class="text-warning">_</span>carrinho 
+                </button>
+              </ng-template>
+            </div>
+            <div class="col-2  ">
+              <button type="button" class="btn btn-primary btn-sm m-0 p-0 btn-block" data-dismiss="modal"  (click)="mostraCarrinho()">
+                <img src="../../../assets/itf/carrinhob.png" height="29"  class="m-0 p-1">
+                
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+

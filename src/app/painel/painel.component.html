@@ -1,0 +1,250 @@
+<div class="container-fluid p-0 m-0">
+  <nav class="navbar fixed-top navbar-light bg-danger shadow-sm">
+      <div class="container">
+    <span class="navbar-brand mb-0 h1 text-light text-center" (click)="atualizarTime()" data-toggle="modal" data-target="#staticBackdrop">
+        <i class="fa fa-cogs" ></i> Painel de controle </span>
+        <i class="fa fa-plus-square fa-2x" style="color: #fff;"  data-toggle="modal" data-target="#exampleModal" ></i>
+  </div> 
+  </nav>
+  <app-addprodutos (atualizarTimeLine)="atualizarTimeLine()"></app-addprodutos>
+  <div *ngIf="lista; else editar">
+  <app-listaprodutos  (mostraEditar)="mostraEditar($event)" #publicacoes></app-listaprodutos>
+</div>
+<ng-template #editar >
+  <app-editprodutos (mostraLista)="mostraLista($event)" (atualizarTimeLine)="atualizarTimeLine()" [editaProduto]="editaProduto"></app-editprodutos>
+</ng-template>
+  </div>
+
+
+
+
+
+  <!-- Configurações-->
+
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Painel de Configurações</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" >
+
+        <div *ngIf="controlaform; else cadastraHora"><!-- cadastra -->
+          <p class="h6 text-center m-0 p-0">Horarios de funcionamento:</p>
+          <hr class="m-0 p-0">
+          <p class="m-0 p-0">Horario de Seg a Sex</p>
+          <div class="form-row" style="background-color:rgb(240, 240, 240) ;">
+            <div class="form-group col-6 mb-1 ">
+              Abre:
+              <div class="input-group input-group-sm m-0">
+                <input class="form-control"
+                type="time" id="appt" name="appt"
+                min="07:00" max="22:00"
+                [value]="abertura" 
+                #selectAbertura
+               (change)="Abertura(selectAbertura.value)">
+              </div>
+            </div>
+            <div class="form-group col-6 mb-1 ">
+              Fecha:
+              <div class="input-group input-group-sm m-0">
+                <input class="form-control"
+                type="time" id="appt" name="appt"
+                min="07:00" max="22:00"
+                [value]="fechamento" 
+                #selectFechamento
+               (change)="Fechamento(selectFechamento.value)">
+              </div>
+            </div>
+          </div>
+
+          <p class="m-0 p-0">Horario de Sábado</p>
+          <div class="form-row" style="background-color:rgb(240, 240, 240) ;">
+            <div class="form-group col-6 mb-1 ">
+              Abre:
+              <div class="input-group input-group-sm m-0">
+                <input class="form-control"
+                type="time" id="appt" name="appt"
+                min="07:00" max="22:00"
+                [value]="aberturaf" 
+                #selectAberturaF
+               (change)="AberturaF(selectAberturaF.value)">
+              </div>
+            </div>
+            <div class="form-group col-6 mb-1 ">
+              Fecha:
+              <div class="input-group input-group-sm m-0">
+                <input class="form-control"
+                type="time" id="appt" name="appt"
+                min="07:00" max="22:00"
+                [value]="fechamentof" 
+                #selectFechamentoF
+               (change)="FechamentoF(selectFechamentoF.value)">
+              </div>
+            </div>
+          </div>
+
+          <p class="m-0 p-0">Horario de Domingo</p>
+          <div class="form-row" style="background-color:rgb(240, 240, 240) ;">
+            <div class="form-group col-6 mb-1 ">
+              Abre:
+              <div class="input-group input-group-sm m-0">
+                <input class="form-control"
+                type="time" id="appt" name="appt"
+                min="07:00" max="22:00"
+                [value]="aberturad" 
+                #selectAberturaD
+               (change)="AberturaD(selectAberturaD.value)">
+              </div>
+            </div>
+            <div class="form-group col-6 mb-1 ">
+              Fecha:
+              <div class="input-group input-group-sm m-0">
+                <input class="form-control"
+                type="time" id="appt" name="appt"
+                min="07:00" max="22:00"
+                [value]="fechamentod" 
+                #selectFechamentoD
+               (change)="FechamentoD(selectFechamentoD.value)">
+              </div>
+            </div>
+          </div>
+        </div><!--finaliza-->
+
+        <ng-template #cadastraHora>
+          <div *ngFor="let hr of hora"><!-- vendo banco -->
+            <p class="h6 text-center m-0 p-0">Horarios de funcionamento: banco</p>
+            <hr class="m-0 p-0">
+            <p class="m-0 p-0">Horario de Seg a Sex</p>
+            <div class="form-row" style="background-color:rgb(240, 240, 240) ;">
+              <div class="form-group col-6 mb-1 ">
+                Abre:
+                <div class="input-group input-group-sm m-0">
+                  <input class="form-control"
+                  type="time" id="appt" name="appt"
+                  min="07:00" max="22:00"
+                  [value]="hr.abre" 
+                  #selectAbertura
+                 (change)="Abertura(selectAbertura.value)">
+                </div>
+              </div>
+              <div class="form-group col-6 mb-1 ">
+                Fecha:
+                <div class="input-group input-group-sm m-0">
+                  <input class="form-control"
+                  type="time" id="appt" name="appt"
+                  min="07:00" max="22:00"
+                  [value]="hr.fechamento" 
+                  #selectFechamento
+                 (change)="Fechamento(selectFechamento.value)">
+                </div>
+              </div>
+            </div>
+  
+            <p class="m-0 p-0">Horario de Sábado</p>
+            <div class="form-row" style="background-color:rgb(240, 240, 240) ;">
+              <div class="form-group col-6 mb-1 ">
+                Abre:
+                <div class="input-group input-group-sm m-0">
+                  <input class="form-control"
+                  type="time" id="appt" name="appt"
+                  min="07:00" max="22:00"
+                  [value]="hr.abref" 
+                  #selectAberturaF
+                 (change)="AberturaF(selectAberturaF.value)">
+                </div>
+              </div>
+              <div class="form-group col-6 mb-1 ">
+                Fecha:
+                <div class="input-group input-group-sm m-0">
+                  <input class="form-control"
+                  type="time" id="appt" name="appt"
+                  min="07:00" max="22:00"
+                  [value]="hr.fechamentof" 
+                  #selectFechamentoF
+                 (change)="FechamentoF(selectFechamentoF.value)">
+                </div>
+              </div>
+            </div>
+  
+            <p class="m-0 p-0">Horario de Domingo</p>
+            <div class="form-row" style="background-color:rgb(240, 240, 240) ;">
+              <div class="form-group col-6 mb-1 ">
+                Abre:
+                <div class="input-group input-group-sm m-0">
+                  <input class="form-control"
+                  type="time" id="appt" name="appt"
+                  min="07:00" max="22:00"
+                  [value]="hr.abred" 
+                  #selectAberturaD
+                 (change)="AberturaD(selectAberturaD.value)">
+                </div>
+              </div>
+              <div class="form-group col-6 mb-1 ">
+                Fecha:
+                <div class="input-group input-group-sm m-0">
+                  <input class="form-control"
+                  type="time" id="appt" name="appt"
+                  min="07:00" max="22:00"
+                  [value]="hr.fechamentod" 
+                  #selectFechamentoD
+                 (change)="FechamentoD(selectFechamentoD.value)">
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="confirmaTime()">Gravar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<!--
+
+ 
+        <table class="table table-sm">
+          <thead>
+            <tr>
+              <th scope="col">Dias</th>
+              <th scope="col">Abre</th>
+              <th scope="col">Fecha</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Semana</th>
+              <td>{{abertura}}</td>
+              <td>{{fechamento}}</td>
+
+            </tr>
+            <tr>
+              <th scope="row">Sábado</th>
+              <td>{{aberturaf}}</td>
+              <td>{{fechamentof}}</td>
+
+            </tr>
+            <tr>
+              <th scope="row">Domingo</th>
+              <td>{{aberturad}}</td>
+              <td>{{fechamentod}}</td>
+
+            </tr>
+          </tbody>
+        </table>
+
+
+-->
